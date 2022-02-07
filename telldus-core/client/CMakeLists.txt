@@ -21,9 +21,6 @@ SET( telldus-core_PUB_HDRS
 	telldus-core.h
 )
 
-FIND_PACKAGE(Threads)
-LIST(APPEND telldus-core_LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
-
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR})
 
 ######## Configurable options for the platform  ########
@@ -99,6 +96,9 @@ IF (WIN32)
 ENDIF ()
 
 ADD_DEPENDENCIES(${telldus-core_TARGET} TelldusCommon)
+
+FIND_PACKAGE(Threads)
+LIST(APPEND telldus-core_LIBRARIES ${CMAKE_THREAD_LIBS_INIT})
 
 IF (UNIX)
 	SET_TARGET_PROPERTIES( ${telldus-core_TARGET} PROPERTIES COMPILE_FLAGS "-fPIC -fvisibility=hidden")
